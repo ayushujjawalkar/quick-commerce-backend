@@ -1,3 +1,4 @@
+
 // const express = require('express');
 // const cors = require('cors');
 // const helmet = require('helmet');
@@ -15,6 +16,7 @@
 // const productRoutes = require('./routes/productRoutes');
 // const cartRoutes = require('./routes/cartRoutes');
 // const orderRoutes = require('./routes/orderRoutes');
+// const adminUserRoutes = require('./routes/adminUserRoutes'); // ✅ ADD THIS
 
 // // Import middleware
 // const { errorHandler, notFound } = require('./middleware/errorHandler');
@@ -34,7 +36,7 @@
 
 // // Rate limiting
 // const limiter = rateLimit({
-//   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
+//   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
 //   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
 //   message: 'Too many requests from this IP, please try again later.'
 // });
@@ -44,7 +46,7 @@
 // app.use(express.json({ limit: '10mb' }));
 // app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// // Data sanitization against NoSQL query injection
+// // Data sanitization
 // app.use(mongoSanitize());
 
 // // Compression
@@ -59,14 +61,9 @@
 //   });
 // });
 
-
-
-
 // app.get("/", (req, res) => {
 //   res.send("Quick Commerce Backend is running 🚀");
 // });
-
-
 
 // // API routes
 // app.use('/api/auth', authRoutes);
@@ -74,6 +71,7 @@
 // app.use('/api/products', productRoutes);
 // app.use('/api/cart', cartRoutes);
 // app.use('/api/orders', orderRoutes);
+// app.use('/api/admin', adminUserRoutes); // ✅ ADD THIS LINE
 
 // // 404 handler
 // app.use(notFound);
@@ -81,12 +79,7 @@
 // // Error handler
 // app.use(errorHandler);
 
-
-
-
-
 // module.exports = app;
-
 
 
 
@@ -108,7 +101,8 @@ const shopRoutes = require('./routes/shopRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-const adminUserRoutes = require('./routes/adminUserRoutes'); // ✅ ADD THIS
+const adminUserRoutes = require('./routes/adminUserRoutes');
+const deliveryRoutes = require('./routes/deliveryRoutes'); // ✅ ADDED: Delivery Routes Import
 
 // Import middleware
 const { errorHandler, notFound } = require('./middleware/errorHandler');
@@ -163,7 +157,8 @@ app.use('/api/shops', shopRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/admin', adminUserRoutes); // ✅ ADD THIS LINE
+app.use('/api/admin', adminUserRoutes); 
+app.use('/api/delivery', deliveryRoutes); // ✅ ADDED: Register Delivery Routes
 
 // 404 handler
 app.use(notFound);
